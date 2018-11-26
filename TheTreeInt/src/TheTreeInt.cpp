@@ -160,6 +160,30 @@ void postOrder(Tree<int>* root)
 
 }
 
+int iterativeHeight(Tree<int>* root)
+{
+	std::queue<Tree<int>*> bfsQueue;
+	bfsQueue.push(root);
+	int height =0;
+	while(1)
+	{
+		auto nodecount = bfsQueue.size();
+		if(nodecount == 0)
+			return height;
+		height++;
+		while(nodecount > 0)
+		{
+			auto curr = bfsQueue.front();
+			bfsQueue.pop();
+			if(curr->getLeft())
+				bfsQueue.push(curr->getLeft());
+			if(curr->getRight())
+				bfsQueue.push(curr->getRight());
+			nodecount--;
+		}
+	}
+}
+
 int main() {
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 
@@ -170,8 +194,8 @@ int main() {
 	root->getLeft()->setRight(new Tree<int>(5));
 	root->getRight()->setLeft(new Tree<int>(6));
 	root->getRight()->setRight(new Tree<int>(7));
-	//root->getLeft()->getLeft()->setLeft(new Tree<int>(8));
-	//root->getLeft()->getLeft()->setRight(new Tree<int>(9));
+	root->getLeft()->getLeft()->setLeft(new Tree<int>(8));
+	root->getLeft()->getLeft()->setRight(new Tree<int>(9));
 	inOrderStack(root);
 	reverseOrderStack(root);
 	std::cout<<"\n"<< countHalfNode(root)<<std::endl;
@@ -180,5 +204,6 @@ int main() {
 	preOrder(root);
 	std::cout<<"\n";
 	postOrder(root);
+	std::cout<<"\n"<< iterativeHeight(root)<<std::endl;
 	return 0;
 }
