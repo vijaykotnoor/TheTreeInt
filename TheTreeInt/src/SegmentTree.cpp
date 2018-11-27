@@ -6,6 +6,7 @@
  */
 #include <iostream>
 #include "SegmentTree.h"
+#include <climits>
 
 
 SegmentTree::SegmentTree(int size):size_(size),tree_(2*size, 0) {
