@@ -10,6 +10,7 @@
 #include <stack>
 #include <queue>
 #include <deque>
+#include "SegmentTree.h"
 using namespace std;
 
 void inOrderStack(Tree<int>* root)
@@ -184,6 +185,26 @@ int iterativeHeight(Tree<int>* root)
 	}
 }
 
+void testSegmentTree()
+{
+
+   std::vector<int> array = {3,4,5,6,7,8,9,0};
+   SegmentTree t(array.size());
+   t.buildAddition(array);
+   t.printTree();
+   t.updateAdditionTree(7, 10);
+   t.printTree();
+   std::cout<< "Range: "<< t.queryAddition(6, 8)<< std::endl;
+
+   SegmentTree minimum(array.size());
+   minimum.buildMinimum(array);
+   minimum.printTree();
+   minimum.updateMinimumTree(7, 10);
+   minimum.printTree();
+   std::cout<< "Range: "<< minimum.queryMinimum(6, 8)<< std::endl;
+
+}
+
 int main() {
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 
@@ -205,5 +226,7 @@ int main() {
 	std::cout<<"\n";
 	postOrder(root);
 	std::cout<<"\n"<< iterativeHeight(root)<<std::endl;
+
+	testSegmentTree();
 	return 0;
 }
