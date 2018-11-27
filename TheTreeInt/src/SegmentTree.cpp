@@ -27,7 +27,7 @@ void SegmentTree::buildAddition(std::vector<int>& inputArray)
 	}
 
     // 0 index does not contain any thing
-	// rest of the indeses will be filled based on the value from the indexes alredy filled
+	// rest of the indexes will be filled based on the value from the indexes alredy filled
 	// we do a left shift which double the number and the or with the last bit is always plus one
 	// we can use plus one also.
 	//ex if the size is 8 then
