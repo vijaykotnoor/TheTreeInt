@@ -8,10 +8,10 @@
 #ifndef SEGMENTTREE_H_
 #define SEGMENTTREE_H_
 
-class segmentTree {
+class SegmentTree {
 public:
-	segmentTree();
-	virtual ~segmentTree();
+	SegmentTree();
+	virtual ~SegmentTree();
 };
 
 #endif /* SEGMENTTREE_H_ */

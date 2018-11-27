@@ -5,14 +5,14 @@
  *      Author: vijay
  */
 
-#include "segmentTree.h"
+#include "SegmentTree.h"
 
-segmentTree::segmentTree() {
+SegmentTree::SegmentTree() {
 	// TODO Auto-generated constructor stub
 
 }
 
-segmentTree::~segmentTree() {
+SegmentTree::~SegmentTree() {
 	// TODO Auto-generated destructor stub
 }
 
