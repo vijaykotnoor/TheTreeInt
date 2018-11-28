@@ -10,6 +10,8 @@
 #include <stack>
 #include <queue>
 #include <deque>
+
+#include "BST_test.h"
 #include "SegmentTree.h"
 using namespace std;
 
@@ -228,5 +230,7 @@ int main() {
 	std::cout<<"\n"<< iterativeHeight(root)<<std::endl;
 
 	testSegmentTree();
+	test_BST_Insert();
+	test_BST_Search();
 	return 0;
 }
