@@ -25,7 +25,7 @@ void test_BST_Insert()
 
 void test_BST_Search()
 {
-	std::cout << "********** Testing BST Search **********" << std::endl;
+	std::cout << "\n********** Testing BST Search **********" << std::endl;
 	BST<int> btree;
 	btree.insert(10);
 	btree.insert(20);
@@ -41,5 +41,31 @@ void test_BST_Search()
 	std::cout << "110 found is:" << btree.search(110)<<std::endl;
 	std::cout << "20 found is:" << btree.search(20)<<std::endl;
 	std::cout << "-10 found is:" << btree.search(-10)<<std::endl;
+
+}
+
+void test_BST_Remove()
+{
+	std::cout << "\n********** Testing BST Search **********" << std::endl;
+	BST<int> btree;
+	btree.insert(50);
+	btree.insert(40);
+	btree.insert(60);
+	btree.insert(30);
+	btree.insert(70);
+	btree.insert(20);
+	btree.insert(10);
+	btree.insert(80);
+	btree.insert(90);
+	btree.printInorder();
+	btree.remove(70);
+	btree.printInorder();
+	btree.remove(40);
+	btree.printInorder();
+	btree.remove(90);
+	btree.printInorder();
+	btree.remove(100);
+	btree.printInorder();
+
 
 }

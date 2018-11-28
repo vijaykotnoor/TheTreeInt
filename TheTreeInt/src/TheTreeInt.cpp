@@ -232,5 +232,6 @@ int main() {
 	testSegmentTree();
 	test_BST_Insert();
 	test_BST_Search();
+	test_BST_Remove();
 	return 0;
 }
