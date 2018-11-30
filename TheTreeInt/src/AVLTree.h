@@ -298,8 +298,7 @@ private:
 			}
 		}
 		updateHeightBalanceFactor(node);
-		node = balance(node);
-		return node;
+		return balance(node);
 	}
 
 	T findMin(Node* node)
