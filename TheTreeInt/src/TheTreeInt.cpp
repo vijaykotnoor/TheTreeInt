@@ -13,6 +13,7 @@
 
 #include "BST_test.h"
 #include "SegmentTree.h"
+#include "AVLTree_test.h"
 using namespace std;
 
 void inOrderStack(Tree<int>* root)
@@ -208,29 +209,9 @@ void testSegmentTree()
 }
 
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 
-	Tree<int>* root = new Tree<int>(1);
-	root->setLeft(new Tree<int>(2));
-	root->setRight(new Tree<int>(3));
-	root->getLeft()->setLeft(new Tree<int>(4));
-	root->getLeft()->setRight(new Tree<int>(5));
-	root->getRight()->setLeft(new Tree<int>(6));
-	root->getRight()->setRight(new Tree<int>(7));
-	root->getLeft()->getLeft()->setLeft(new Tree<int>(8));
-	root->getLeft()->getLeft()->setRight(new Tree<int>(9));
-	inOrderStack(root);
-	reverseOrderStack(root);
-	std::cout<<"\n"<< countHalfNode(root)<<std::endl;
-	std::cout<<"\n"<< countLeafNode(root)<<std::endl;
-	std::cout<<"\n"<< countFullNode(root)<<std::endl;
-	preOrder(root);
-	std::cout<<"\n";
-	postOrder(root);
-	std::cout<<"\n"<< iterativeHeight(root)<<std::endl;
+//	test_BST_driver();
+	test_AVLTree_Driver();
 
-	testSegmentTree();
-	test_BST_Insert();
-	test_BST_Search();
 	return 0;
 }

@@ -7,6 +7,7 @@
 
 #include "BST.h"
 
+
 void test_BST_Insert()
 {
 	std::cout << "********** Testing BST Insert **********" << std::endl;
@@ -42,4 +43,10 @@ void test_BST_Search()
 	std::cout << "20 found is:" << btree.search(20)<<std::endl;
 	std::cout << "-10 found is:" << btree.search(-10)<<std::endl;
 
+}
+
+void test_BST_driver()
+{
+	test_BST_Insert();
+	test_BST_Search();
 }

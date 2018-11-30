@@ -103,23 +103,9 @@ private:
 		// node addition
 
 		auto retValue = searchHelper(value, node);
-		if(node == nullptr)
-		{
-			return retValue;
-		}
-		else if(value == node->getData())
-		{
-			return node;
-		}
-		else if(value < node->getData())
-		{
-            node = searchHelper(value, node->getLeft());
-		}
-		else if(value > node->getData())
-		{
-            node = searchHelper(value, node->getRight());
-		}
-		return node;
+
+
+		return retValue;
 
 	}
 
