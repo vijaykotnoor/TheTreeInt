@@ -51,10 +51,32 @@ public:
     	std::cout<<std::endl;
     }
 
+	//print values
+    void printLevelorder()
+    {
+    	printLevelorderHelper(root_);
+    	std::cout<<std::endl;
+    }
+
     //check if the value is already present in the tree.
     bool contains(T value)
     {
     	return contains(root_, value);
+    }
+
+    bool remove(T value)
+    {
+    	if(root_ == nullptr)
+    		return false;
+    	if(contains(value))
+    	{
+    		root_ = remove(root_, value);
+    		nodeCount_--;
+    		return true;
+    	}
+
+    	return false;
+
     }
 
 private:
@@ -88,8 +110,8 @@ private:
 
 		//update node
 		updateHeightBalanceFactor(node);
-		//TODO: balance node
-
+		//balance node
+		node = balance(node);
 		return node;
 	}
 
@@ -120,6 +142,32 @@ private:
 		printInorderHelper(node->right_);
 	}
 
+	void printLevelorderHelper(Node* node)
+	{
+		//base case
+		if(node == nullptr)
+			return;
+
+		std::queue<Node*> lvlQueue;
+		lvlQueue.push(node);
+		//auto height = node->height_;
+		while(!lvlQueue.empty())
+		{
+			auto temp = lvlQueue.front();
+			/*if(temp->height_ != height)
+			{
+				height = temp->height_
+			}*/
+
+			lvlQueue.pop();
+			std::cout<< temp->value_ << " " ;
+			if(temp->left_ != nullptr)
+				lvlQueue.push(temp->left_);
+			if(temp->right_ != nullptr)
+				lvlQueue.push(temp->right_);
+		}
+	}
+
 	//update the height and the balance factor for all the nodes
 	// The function is called in a recursive function so the height of all nodes are updated
 	void updateHeightBalanceFactor(Node* node)
@@ -138,6 +186,7 @@ private:
 	// Balance the node and return the new root
 	Node* balance(Node* node)
 	{
+
 		// if left is heavy
 		if(node->balanceFactor_ == -2)
 		{
@@ -155,8 +204,118 @@ private:
 			else // right left case
 				return rightLeftCase(node);
 		}
+		return node;
 
 	}
+
+	Node* leftLeftCase(Node* node)
+	{
+		return rightRotation(node);
+	}
+
+	Node*leftRightCase(Node* node)
+	{
+		node->left_ = leftRotation(node->left_);
+		return leftLeftCase(node);
+	}
+
+	Node* rightRightCase(Node* node)
+	{
+		return leftRotation(node);
+	}
+
+	Node* rightLeftCase(Node* node)
+	{
+		node->right_ = rightRotation(node->right_);
+		return rightRightCase(node);
+	}
+
+	Node* leftRotation(Node* node)
+	{
+		Node* newParent = node->right_;
+		node->right_ = newParent->left_;
+		newParent->left_ = node;
+
+		updateHeightBalanceFactor(node);
+		updateHeightBalanceFactor(newParent);
+		return newParent;
+
+	}
+
+	Node* rightRotation(Node* node)
+	{
+		Node* newParent = node->left_;
+		node->left_ = newParent->right_;
+		newParent->right_ = node;
+		updateHeightBalanceFactor(node);
+		updateHeightBalanceFactor(newParent);
+		return newParent;
+	}
+
+	Node* remove(Node* node, T value)
+	{
+		if(node == nullptr)
+			return node;
+
+		if(value > node->value_)
+			node->right_ = remove(node->right_, value);
+		else if(value < node->value_)
+			node->left_ = remove(node->left_, value);
+		else
+		{
+			if(node->left_ == nullptr && node->right_ == nullptr)
+			{
+				delete node;
+			    return nullptr;
+			}
+			else if(node->left_ == nullptr)
+			{
+				auto newnode = node->right_;
+				delete node;
+				return newnode;
+			}
+			else if(node->right_ == nullptr)
+			{
+				auto newnode = node->left_;
+				delete node;
+				return newnode;
+			}
+			else
+			{
+                //extra case to check the tree height
+				if(node->left_->height_ > node->right_->height_)
+				{
+					auto succValue = findMax(node->left_);
+					node->value_ = succValue;
+					node->left_ = remove(node->left_, succValue);
+				}
+				else
+				{
+					auto succValue = findMin(node->right_);
+					node->value_ = succValue;
+					node->right_ = remove(node->right_, succValue);
+				}
+			}
+		}
+		updateHeightBalanceFactor(node);
+		node = balance(node);
+		return node;
+	}
+
+	T findMin(Node* node)
+	{
+		while(node->left_ != nullptr)
+			node = node->left_;
+		return node->value_;
+	}
+
+	T findMax(Node* node)
+	{
+		while(node->right_ != nullptr)
+			node = node->right_;
+		return node->value_;
+	}
+
 	Node* root_; //root node
 	int nodeCount_;// number of nodes in the AVL Tree
 };
