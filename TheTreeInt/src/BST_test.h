@@ -26,7 +26,7 @@ void test_BST_Insert()
 
 void test_BST_Search()
 {
-	std::cout << "********** Testing BST Search **********" << std::endl;
+	std::cout << "\n********** Testing BST Search **********" << std::endl;
 	BST<int> btree;
 	btree.insert(10);
 	btree.insert(20);
