@@ -13,6 +13,7 @@
 
 #include "BST_test.h"
 #include "SegmentTree.h"
+#include "RedBlackTree_test.h"
 using namespace std;
 
 void inOrderStack(Tree<int>* root)
@@ -233,5 +234,6 @@ int main() {
 	test_BST_Insert();
 	test_BST_Search();
 	test_BST_Remove();
+	RedBlackTree_test_Driver();
 	return 0;
 }
